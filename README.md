@@ -1,4 +1,4 @@
-# Scribd Scraper
+# SCRIBD_to_PDF
 
 A Python tool for downloading Scribd documents as PDF files for educational purposes.
 
@@ -24,8 +24,8 @@ A Python tool for downloading Scribd documents as PDF files for educational purp
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/scribd-scraper.git
-   cd scribd-scraper
+   git clone https://github.com/ILFforever/SCRIBD_to_PDF.git
+   cd SCRIBD_to_PDF
    ```
 
 2. Install dependencies:
