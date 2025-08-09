@@ -37,7 +37,7 @@ A Python tool for downloading Scribd documents as PDF files for educational purp
 
 1. Run the script:
    ```bash
-   python main.py
+   python Scribd_to_PDF.py
    ```
 
 2. Enter a Scribd document URL when prompted:
