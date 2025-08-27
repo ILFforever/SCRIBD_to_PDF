@@ -94,9 +94,8 @@ def validate_scribd_url(url):
    pattern = r'^https://www\.scribd\.com/document/\d+/'
    return bool(re.match(pattern, url))
 
-#Extract URLs from J
+#Extract URLs from Json result
 def extract_url(jsonp_content):
-    # Pattern to match docManager.addPage() calls and extract pageNum and contentUrl
         pattern = r'docManager\.addPage\(\{[^}]*pageNum:\s*(\d+)[^}]*contentUrl:\s*["\']([^"\']+)["\'][^}]*\}\);'
         
         matches = re.findall(pattern, jsonp_content)
@@ -193,7 +192,7 @@ def fetch_image_urls_optimized(page_url_tuples, max_workers=10):
                 else:
                     notfound_img.append(page_num)
     
-    print()  # New line
+    print()
     results_list = [results[page_num] for page_num in sorted(results.keys())]
     
     print("=" * 30)
@@ -249,7 +248,6 @@ def create_pdf_from_urls_threaded(image_data, output_pdf='document.pdf', max_wid
     """
     Create PDF directly from image URLs using multithreading
     """
-    # Filter valid images
     valid_images = [item for item in image_data if len(item) == 3 and item[2].startswith('http')]
     
     if not valid_images:
@@ -268,9 +266,8 @@ def create_pdf_from_urls_threaded(image_data, output_pdf='document.pdf', max_wid
     completed = 0
     successful = 0
     failed = 0
-    results = {}  # Store results with page_num as key to maintain order
-    
-    # Progress tracking
+    results = {} 
+
     progress_lock = threading.Lock()
     
     def update_progress():
@@ -286,7 +283,6 @@ def create_pdf_from_urls_threaded(image_data, output_pdf='document.pdf', max_wid
             eta = (total_images - completed) / rate if rate > 0 else 0
             print(f'\r ⏳ Progress: |{bar}| {progress:.1f}% ({completed}/{total_images}) - {rate:.1f} img/s - ETA: {eta:.0f}s', end='', flush=True)
     
-    # Use ThreadPoolExecutor for parallel processing
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         # Submit all tasks
         future_to_item = {
@@ -347,4 +343,5 @@ def create_pdf_from_urls_threaded(image_data, output_pdf='document.pdf', max_wid
 
 
 if __name__ == "__main__":
+
     main()
